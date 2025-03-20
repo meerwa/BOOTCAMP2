@@ -16,6 +16,7 @@ class MenuItem:
             self.cursor.execute(query)
             self.connection.commit()
             print(f"Item '{self.name}' saved successfully.")
+        
         except Exception as e:
             print(f"An error occurred while saving the item: {e}")
 
@@ -30,6 +31,10 @@ class MenuItem:
             print(f"Item '{self.name}' deleted successfully.")
         except Exception as e:
             print(f"An error occurred while deleting the item: {e}")
+
+
+
+
 
     def update(self, new_name=None, new_price=None):
         
