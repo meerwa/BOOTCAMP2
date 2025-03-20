@@ -4,12 +4,13 @@ class MenuItem:
     def __init__(self, name, price):
         self.name = name
         self.price = price
-        self.connection = psycopg2.connect(host="localhost", user="postgres", password="test", dbname="my_database")
+
+        self.connection = psycopg2.connect(host="localhost", user="postgres", password="test", dbname="DAY4")
         self.cursor = self.connection.cursor()
         print("Database connection established in MenuItem.")
 
     def save(self):
-        """Save the item to the Menu_Items table."""
+        
         query = f"INSERT INTO Menu_Items (item_name, item_price) VALUES ('{self.name}', {self.price})"
         try:
             self.cursor.execute(query)
@@ -18,8 +19,10 @@ class MenuItem:
         except Exception as e:
             print(f"An error occurred while saving the item: {e}")
 
+
+
     def delete(self):
-        """Delete the item from the Menu_Items table based on the item's name."""
+        
         query = f"DELETE FROM Menu_Items WHERE item_name = '{self.name}'"
         try:
             self.cursor.execute(query)
@@ -29,7 +32,7 @@ class MenuItem:
             print(f"An error occurred while deleting the item: {e}")
 
     def update(self, new_name=None, new_price=None):
-        """Update the item's name and/or price in the Menu_Items table."""
+        
         updates = []
         if new_name:
             updates.append(f"item_name = '{new_name}'")
