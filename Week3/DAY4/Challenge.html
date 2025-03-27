@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Challenge: Mad Libs</title>
+</head>
+<body>
+
+<h1>Mad Libs</h1>
+
+<form id="libform">
+    <label for="noun">Noun:</label><input type="text" id="noun" required><br>
+    <label for="adjective">Adjective:</label><input type="text" id="adjective" required><br>
+    <label for="person">Someone's Name:</label><input type="text" id="person" required><br>
+    <label for="verb">Verb:</label><input type="text" id="verb" required><br>
+    <label for="place">A place:</label><input type="text" id="place" required><br>
+    <button type="submit" id="lib-button">Lib it!</button>
+    <button type="button" id="shuffle-button">Shuffle Story</button>
+</form>
+
+<p>Generated story: 
+<span id="story"></span>
+</p>
+
+<script>
+    const form = document.getElementById('libform');
+    const storyElement = document.getElementById('story');
+    const shuffleButton = document.getElementById('shuffle-button');
+
+    // Array to hold different story templates
+    const stories = [
+        (noun, adjective, person, verb, place) => `${person} was a very ${adjective} person who loved to ${verb} at the ${place}. One day, they found a magical ${noun}!`,
+        (noun, adjective, person, verb, place) => `In a ${adjective} world, ${person} decided to ${verb} with a ${noun} in ${place}. The adventure of a lifetime began!`,
+        (noun, adjective, person, verb, place) => `${person} dreamed of a ${adjective} ${noun} that would take them to ${place} and make them the best ${verb} in the land.`,
+    ];
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get input values
+        const noun = document.getElementById('noun').value.trim();
+        const adjective = document.getElementById('adjective').value.trim();
+        const person = document.getElementById('person').value.trim();
+        const verb = document.getElementById('verb').value.trim();
+        const place = document.getElementById('place').value.trim();
+
+        // Check for empty values
+        if (!noun || !adjective || !person || !verb || !place) {
+            console.error("All fields must be filled out.");
+            alert("Please fill out all fields.");
+            return; // Exit if any fields are empty
+        }
+
+        // Generate and display the initial story
+        const story = stories[Math.floor(Math.random() * stories.length)](noun, adjective, person, verb, place);
+        storyElement.textContent = story;
+    });
+
+    // Function to shuffle the story
+    shuffleButton.addEventListener('click', function() {
+        const noun = document.getElementById('noun').value.trim();
+        const adjective = document.getElementById('adjective').value.trim();
+        const person = document.getElementById('person').value.trim();
+        const verb = document.getElementById('verb').value.trim();
+        const place = document.getElementById('place').value.trim();
+
+        // Check for empty values again
+        if (!noun || !adjective || !person || !verb || !place) {
+            console.error("All fields must be filled out to shuffle the story.");
+            alert("Please fill out all fields.");
+            return; // Exit if any fields are empty
+        }
+
+        // Generate and display a new story randomly
+        const story = stories[Math.floor(Math.random() * stories.length)](noun, adjective, person, verb, place);
+        storyElement.textContent = story;        
+    });
+</script>
+
+</body>
+</html>
