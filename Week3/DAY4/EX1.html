@@ -1,0 +1,66 @@
+//string = "A-quick-brown-fox" //string to be split
+//array_of_strings = string.split("-") //The split() function 
+
+//console.log(string) //note that the split function doesn't change the original string
+//console.log(array_of_strings)//
+
+
+<html>
+    <article>
+        <h1> Some Facts </h1>
+        <h2> The Chocolate </h2>
+        <h3> History of the chocolate </h3>
+        <p> Chocolate is made from tropical Theobroma cacao tree seeds. 
+        Its earliest use dates back to the Olmec civilization in Mesoamerica.</p>
+        <p> After the European discovery of the Americas, chocolate became 
+        very popular in the wider world, and its demand exploded. </p>
+        <p> Chocolate has since become a popular food product that millions enjoy every day, 
+        thanks to its unique, rich, and sweet taste.</p> 
+        <p> But what effect does eating chocolate have on our health?</p> 
+    </article>
+<body>
+
+    <script>
+        // Correctly select the h1 element using getElementsByTagName
+       let h1 = document.getElementByTagName("h1")[0]; // 0 index for the first h1
+              // Select all <p> elements
+       let p = document.querySelectorAll("p");
+        // Remove the last <p> element from the article
+            p [ p.length - 1].remove();  // Correctly remove the last paragraph
+
+             // Select the <h2> element
+       let h2 = document.querySelector("h2");
+                 
+       h1.console.log();
+       document.remove("p")
+       
+        // Add an event listener to h2
+       h2.addEventListener("click",function() {
+        h2.style.backgroundColor= "red";
+
+       });
+        // Select the <h3> element
+       let h3= document.querySelector("h3");
+       // Add an event listener to h3
+       h3.addEventListener("click",function(){
+         h3.style.display="none";// Hide h3 on click
+
+       });
+
+        // Add an alert on click of each paragraph
+       p.forEach(function(p) {
+           p.addEventListener("click", function(event) { 
+               alert("Paragraph clicked");
+               event.stopPropagation();  // Stop event propagation
+           });
+       });
+
+      // Add an alert to the h1
+      h1.addEventListener("click", function() {
+           alert("H1 is Clicked");
+       });
+
+    </script>
+
+</body>
+</html>
