@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: yellow;
+        }
+        #animate {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <p><button onclick="myMove()">Click Me</button></p>
+    <div id="container">
+        <div id="animate"></div>
+    </div>
+
+    <script>
+        function myMove() {
+            const animateBox = document.getElementById("animate");
+            const container = document.getElementById("container");
+    
+            let position = 0;
+            const intervalId = setInterval(() => {
+                // Move the box 1 pixel to the right
+                position++;
+                animateBox.style.left = position + 'px';
+                
+                // Check if the box has reached the right end of the container
+                if (position >= (container.clientWidth - animateBox.clientWidth)) {
+                    clearInterval(intervalId); // Stop the interval when it reaches the end
+                }
+            }, 1); // Move every millisecond
+        }
+    </script>
+</body>
+</html>
